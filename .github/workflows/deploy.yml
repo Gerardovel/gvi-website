@@ -1,0 +1,34 @@
+name: S3 Website Deployment
+
+on:
+  push:
+    branches:
+      - main # The branch to trigger the deployment
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # Step 2: Configure AWS Credentials from GitHub Secrets
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }} # Use the region secret
+
+      # Step 3: Sync local files to S3 bucket
+      - name: Deploy Static Site to S3
+        run: |
+          # Use the 'aws s3 sync' command to upload/update files
+          # The '.' represents the root of your GitHub repo, where your website files are
+          # The --delete flag removes files from S3 that are no longer in your repo
+          aws s3 sync . s3://${{ secrets.S3_BUCKET_NAME }} --delete
+
+      - name: Print S3 Website URL (for confirmation)
+        run: |
+          echo "Deployment complete! Your website should be live at the S3 endpoint."
