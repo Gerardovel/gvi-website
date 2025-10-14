@@ -1,0 +1,24 @@
+body{
+    background-color: lightblue;
+}
+
+p {
+  color: red;
+}
+
+.demo{
+    font-size: 20px;
+    color: blue;
+}
+
+.flex-container {
+  display: flex;
+  gap: 10px;
+}
+
+.box {
+  background-color: rgb(173, 230, 199);
+  padding: 30px;
+  text-align: center;
+  flex: 1;
+}
