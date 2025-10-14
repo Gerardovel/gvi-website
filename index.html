@@ -2,26 +2,17 @@
 <html>
   <head>
     <title>Gerardo's Website</title>
-    <script>
-    function clickCounter() {
-      const x = document.getElementById("result");
-      if (typeof(Storage) !== "undefined") {
-        if (localStorage.clickcount) {
-          localStorage.clickcount = Number(localStorage.clickcount)+1;
-        } else {
-          localStorage.clickcount = 1;
-        }
-        x.innerHTML = "You have clicked the button " + localStorage.clickcount + " time(s)!";
-      } else {
-        x.innerHTML = "Sorry, no Web storage support!";
-      }
-    }
-    </script>
     <link rel="stylesheet" href="styles.css">
   </head>
 
   <body>
     <h1>Hello, World!</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact Us</a>
+    </nav>
+    
     <p>This is a test of connection with s3</p>
     <p class="demo"> Demo for css</p>
     <input type="submit" value="Submit">
@@ -30,8 +21,5 @@
       <div class="box">Nickte</div>
       <div class="box">Ana Lucia</div>
     </div>
-    <button onclick="clickCounter()" type="button">Click me!</button>
-    <p id="result"></p>
-
   </body>
 </html>
